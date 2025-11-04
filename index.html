@@ -1,47 +1,55 @@
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <title>Adrián GVC | Consultor en Ciberseguridad y Sistemas IT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ✅ Título y descripción SEO -->
+    <title>Adrián GVC | Consultor en Ciberseguridad, Sistemas IT y DFIR</title>
     <meta
       name="description"
-      content="Portfolio profesional de Adrián GVC — Consultor en Ciberseguridad, Sistemas IT y Análisis Forense (DFIR). Proyectos, habilidades, formación y contacto."
+      content="Portfolio profesional de Adrián Gómez-Valadés Castaño — Consultor en Ciberseguridad, Sistemas IT y Análisis Forense (DFIR)."
     />
+    <meta name="author" content="Adrián Gómez-Valadés Castaño" />
+
+    <!-- ✅ Paleta del navegador -->
     <meta name="theme-color" content="#0f172a" />
-    <!-- Open Graph / Social -->
-    <meta property="og:title" content="Adrián GVC | Consultor en Ciberseguridad y Sistemas IT" />
-    <meta property="og:description" content="DFIR, IAM (SailPoint), Sistemas y Redes. Portfolio profesional." />
-    <meta property="og:type" content="website" />
+
+    <!-- ✅ Open Graph (previsualización en redes sociales) -->
+    <meta property="og:title" content="Adrián GVC | Consultor en Ciberseguridad" />
+    <meta
+      property="og:description"
+      content="Consultor especializado en Ciberseguridad, Sistemas IT y Análisis Forense (DFIR)."
+    />
     <meta property="og:image" content="/preview.png" />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://adriangvc.com" />
 
-    <!-- Favicon (coloca el archivo en /public/favicon.ico) -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-
-    <!-- Fuente IBM Plex Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- ✅ Fuente profesional (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
+    >
+
+    <!-- ✅ Iconos (Font Awesome + Lucide) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-SzlrxWriC3O6dVbUZZXU1j6hC6tC1Ogk1zGvD+z5p5sW1bZ5q0s2XG8Uz5qK5uI4eD4m+YkH2K+5Fk4jYBb7NQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
 
-    <!-- Dark mode por defecto SIN parpadeos -->
-    <script>
-      try {
-        const saved = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const useDark = saved ? saved === "dark" : true || prefersDark;
-        document.documentElement.classList.toggle("dark", useDark);
-      } catch {}
-    </script>
+    <!-- ✅ Favicon corporativo -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- ✅ Estilos principales generados por Vite/Tailwind -->
+    <script type="module" crossorigin src="/src/main.jsx"></script>
   </head>
-  <body>
+
+  <body class="bg-[#0f172a] text-white">
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

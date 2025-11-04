@@ -1,350 +1,244 @@
-import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  Mail, Phone, MapPin, Github, Linkedin, ExternalLink,
-  ArrowRight, Sun, Moon, Shield, Cpu, Terminal, Lock, MessageCircle
-} from "lucide-react";
+import { Shield, Terminal, Cpu, FolderGit2, ExternalLink } from "lucide-react";
 
-/* ---------- Componentes base ---------- */
-const Section = ({ id, title, subtitle, children }) => (
-  <section id={id} className="relative scroll-mt-24 py-20">
-    <div className="relative mx-auto max-w-6xl px-6">
-      <motion.h2
-        initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }} viewport={{ once: true }}
-        className="text-3xl md:text-4xl font-bold tracking-tight text-textPrimary"
-      >
-        {title}
-      </motion.h2>
-      {subtitle && (
-        <motion.p
-          initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }} viewport={{ once: true }}
-          className="mt-2 text-textSecondary"
-        >
-          {subtitle}
-        </motion.p>
-      )}
-      <div className="mt-10">{children}</div>
-    </div>
-  </section>
-);
-
-const Card = ({ children }) => (
-  <motion.div
-    whileHover={{ y: -4 }}
-    transition={{ type: "spring", stiffness: 280, damping: 24 }}
-    className="rounded-2xl border border-borderColor bg-cardBg shadow-elevate p-6"
-  >
-    {children}
-  </motion.div>
-);
-
-/* ---------- App ---------- */
 export default function App() {
-  const now = new Date().getFullYear();
-  const [dark, setDark] = useState(true);
-  const [loading, setLoading] = useState(true);
-
-  // loader simple y elegante
-  useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) setDark(saved === "dark");
-    const t = setTimeout(() => setLoading(false), 1100);
-    return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", dark);
-    localStorage.setItem("theme", dark ? "dark" : "light");
-  }, [dark]);
-
-  const skills = [
-    { icon: <Shield className="h-5 w-5 text-accent" />, title: "Ciberseguridad", desc: "Defensa, hardening y gobierno." },
-    { icon: <Terminal className="h-5 w-5 text-accent" />, title: "DFIR / Forense", desc: "Volatility, Autopsy, cadena de custodia." },
-    { icon: <Cpu className="h-5 w-5 text-accent" />, title: "Sistemas & Redes", desc: "Linux/Windows, networking, firewalls." },
-    { icon: <Lock className="h-5 w-5 text-accent" />, title: "IAM (SailPoint)", desc: "IdentityIQ, workflows y automatización." },
-  ];
-
-  const projects = [
-    {
-      name: "VolatixLab",
-      desc: "Laboratorio forense en español: evidencias RAM y Disco para DFIR con Volatility & Autopsy.",
-      link: "https://github.com/adrigomezv01/VolatixLab",
-      tags: ["DFIR", "Forense", "Open Source"],
-    },
-    {
-      name: "Workflow IAM – SailPoint",
-      desc: "IdentityIQ: creación de usuarios, generación de contraseñas y notificación automática.",
-      link: "mailto:adriangomezvaladesc01@gmail.com?subject=Info%20Workflow%20SailPoint",
-      tags: ["IAM", "Automatización", "Java/Beanshell"],
-    },
-  ];
-
-  // Formación ordenada por relevancia
-  const education = [
-    "Curso de Especialización en Ciberseguridad Informática — CETI (Badajoz)",
-    "Bootcamp de Identidad Digital (SailPoint IdentityIQ) — STEMDO Mérida",
-    "Técnico Superior en Administración de Sistemas Informáticos en Red (ASIR)",
-    "Técnico en Sistemas Microinformáticos y Redes (SMR)",
-  ];
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-bgPrimary text-textPrimary grid place-items-center">
-        <div className="text-center">
-          <motion.div
-            initial={{ rotate: 0 }} animate={{ rotate: 360 }}
-            transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
-            className="mx-auto mb-3 h-10 w-10 rounded-full border-2 border-accent/40 border-t-accent"
-          />
-          <p className="font-mono text-textSecondary">Iniciando adriangvc.com...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-bgPrimary text-textPrimary">
-      {/* Fondo animado sutil */}
-      <div className="grid-net" />
+    <div className="bg-[#0f172a] text-gray-100 font-inter scroll-smooth">
+      {/* NAVBAR */}
+      <nav className="fixed top-0 left-0 w-full bg-[#0f172a]/80 backdrop-blur-md border-b border-slate-800 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <motion.a
+            href="#home"
+            className="text-2xl font-bold text-emerald-400 tracking-wide"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            A<span className="text-white">drián GVC</span>
+          </motion.a>
+          <div className="flex gap-6 text-gray-300 text-sm font-medium">
+            <a href="#about" className="hover:text-emerald-400 transition">Sobre mí</a>
+            <a href="#education" className="hover:text-emerald-400 transition">Formación</a>
+            <a href="#projects" className="hover:text-emerald-400 transition">Proyectos</a>
+            <a href="#contact" className="hover:text-emerald-400 transition">Contacto</a>
+          </div>
+        </div>
+      </nav>
 
-      {/* Banner disponibilidad */}
-      <div className="w-full bg-banner text-banner">
-        <div className="mx-auto max-w-6xl px-6 py-2 flex items-center justify-between">
-          <span>💼 Disponible para oportunidades en Ciberseguridad & IT Systems</span>
+      {/* HERO */}
+      <section id="home" className="min-h-screen flex flex-col justify-center items-center text-center px-6">
+        <motion.h1
+          className="text-5xl md:text-7xl font-bold mb-4"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          Adrián Gómez-Valadés Castaño
+        </motion.h1>
+        <motion.p
+          className="text-lg md:text-xl text-gray-400 mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+        >
+          Consultor en <span className="text-emerald-400">Ciberseguridad, Sistemas IT</span> y Análisis Forense (DFIR)
+        </motion.p>
+        <motion.div
+          className="flex gap-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+        >
           <a
-            href="mailto:adriangomezvaladesc01@gmail.com"
-            className="rounded-md bg-accent text-black px-3 py-1 font-medium hover:brightness-110"
+            href="/AdrianGVC-CV.pdf"
+            download="AdrianGomezValades-CV.pdf"
+            className="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold px-6 py-3 rounded-lg transition"
+          >
+            Descargar CV
+          </a>
+          <a
+            href="#contact"
+            className="border border-emerald-400/50 hover:bg-emerald-400/10 text-emerald-400 px-6 py-3 rounded-lg transition"
           >
             Contactar
           </a>
-        </div>
-      </div>
+        </motion.div>
+      </section>
 
-      {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full border-b border-borderColor bg-bgHeader/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#home" className="text-xl font-semibold tracking-tight">
-            Adrián <span className="text-accent">GVC</span>
-          </a>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-textSecondary">
-            <a href="#about" className="hover:text-accent">Sobre mí</a>
-            <a href="#skills" className="hover:text-accent">Habilidades</a>
-            <a href="#projects" className="hover:text-accent">Proyectos</a>
-            <a href="#education" className="hover:text-accent">Formación</a>
-            <a href="#contact" className="hover:text-accent">Contacto</a>
-            <a
-              href="/AdrianGVC-CV.pdf"
-              download="AdrianGVC-CV.pdf"
-              className="hover:text-accent"
-            >
-              CV
-            </a>
-            <button
-              onClick={() => setDark(v => !v)}
-              className="ml-2 flex items-center justify-center rounded-full p-2 border border-borderColor hover:border-accent/50 transition"
-              aria-label="Cambiar tema"
-            >
-              {dark ? <Sun className="h-5 w-5 text-accent" /> : <Moon className="h-5 w-5 text-accent" />}
-            </button>
-          </nav>
-        </div>
-      </header>
+      {/* SOBRE MÍ */}
+      <section id="about" className="py-32 max-w-5xl mx-auto px-6 text-center">
+        <motion.h2
+          className="text-4xl font-bold mb-6 text-white"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+        >
+          Sobre mí
+        </motion.h2>
+        <motion.p
+          className="text-gray-400 text-lg leading-relaxed"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Soy un profesional especializado en <span className="text-emerald-400">ciberseguridad informática</span>,
+          con formación en administración de sistemas y experiencia en entornos de análisis forense digital.
+          Me apasiona la investigación técnica, la defensa de infraestructuras y la mejora continua de la seguridad IT.
+        </motion.p>
+      </section>
 
-      {/* Hero */}
-      <section id="home" className="py-24 md:py-32">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-accent font-mono mb-3 tracking-wide">
-            _Cybersecurity · Systems · DFIR
-          </p>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-            Adrián GVC
-          </h1>
-          <p className="mt-4 text-xl text-textSecondary">
-            Consultor en Ciberseguridad, Sistemas IT y Análisis Forense (DFIR)
-          </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 font-medium text-black hover:brightness-110"
-            >
-              Ver proyectos <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:adriangomezvaladesc01@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg border border-borderColor px-5 py-2.5 hover:bg-chip/20"
-            >
-              Contactar por email
-            </a>
-          </div>
+      {/* FORMACIÓN */}
+      <section id="education" className="py-32 bg-slate-900/30">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <motion.h2
+            className="text-4xl font-bold mb-12 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            Formación
+          </motion.h2>
 
-          <div className="mt-6 flex flex-wrap gap-6 text-textSecondary text-sm">
-            <span className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Badajoz, España</span>
-            <span className="flex items-center gap-2"><Mail className="h-4 w-4" /> adriangomezvaladesc01@gmail.com</span>
-            <span className="flex items-center gap-2"><Phone className="h-4 w-4" /> +34 654 07 98 95</span>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Shield className="h-10 w-10 text-emerald-400" />,
+                title: "Curso de Especialización en Ciberseguridad Informática — CETI Badajoz",
+                year: "2024",
+              },
+              {
+                icon: <Cpu className="h-10 w-10 text-emerald-400" />,
+                title: "Administración de Sistemas Informáticos en Red (ASIR)",
+                year: "2023",
+              },
+              {
+                icon: <Terminal className="h-10 w-10 text-emerald-400" />,
+                title: "Sistemas Microinformáticos y Redes (SMR)",
+                year: "2021",
+              },
+            ].map((f, i) => (
+              <motion.div
+                key={i}
+                className="p-8 rounded-2xl bg-slate-800/40 border border-slate-700 hover:border-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.2 }}
+              >
+                <div className="flex justify-center mb-4">{f.icon}</div>
+                <h3 className="font-semibold text-lg mb-2">{f.title}</h3>
+                <p className="text-gray-500 text-sm">{f.year}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Sobre mí */}
-      <Section
-        id="about"
-        title="Sobre mí"
-        subtitle="Perfil profesional orientado a entornos corporativos"
-      >
-        <div className="grid md:grid-cols-2 gap-10">
-          <p className="text-textSecondary leading-relaxed text-lg">
-            Profesional de ciberseguridad con base en sistemas y redes. Experiencia práctica en
-            DFIR (Volatility, Autopsy), gestión de identidades (SailPoint), hardening y procedimientos
-            corporativos. Documentación clara, automatización eficiente y foco en resultados verificables.
-          </p>
-          <Card>
-            <h3 className="font-semibold text-textPrimary">Lo que aporto</h3>
-            <ul className="mt-3 space-y-2 text-textSecondary">
-              <li>• Mentalidad de ingeniería: reproducibilidad y evidencias.</li>
-              <li>• Orientación a procesos: playbooks y mejora continua.</li>
-              <li>• Comunicación clara: informes técnicos y de negocio.</li>
-            </ul>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Habilidades */}
-      <Section id="skills" title="Habilidades" subtitle="Competencias técnicas clave">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          {skills.map((s, i) => (
-            <Card key={i}>
-              <div className="flex items-start gap-3">
-                {s.icon}
-                <div>
-                  <h4 className="font-semibold">{s.title}</h4>
-                  <p className="text-sm text-textSecondary mt-1">{s.desc}</p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Proyectos */}
-      <Section id="projects" title="Proyectos destacados" subtitle="Casos prácticos y repositorios técnicos">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((p, i) => (
-            <Card key={i}>
-              <h3 className="text-xl font-semibold">{p.name}</h3>
-              <p className="mt-2 text-textSecondary">{p.desc}</p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {p.tags.map((t, j) => (
-                  <span key={j} className="rounded-md border border-borderColor bg-chip px-2 py-1 text-xs text-textSecondary">
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <a href={p.link} className="inline-flex items-center gap-2 mt-5 text-accent hover:opacity-90">
-                Ver proyecto <ExternalLink className="h-4 w-4" />
-              </a>
-            </Card>
-          ))}
-        </div>
-      </Section>
-
-      {/* Formación (ordenada por relevancia) */}
-      <Section id="education" title="Formación y certificaciones" subtitle="De mayor a menor relevancia">
-        <div className="space-y-4">
-          {education.map((e, i) => (
-            <div key={i} className="flex items-center gap-3 rounded-xl border border-borderColor bg-cardBg p-4">
-              <Shield className="h-5 w-5 text-accent" />
-              <span className="text-textSecondary">{e}</span>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* Contacto — rediseñado */}
-      <Section id="contact" title="Contacto" subtitle="¿Hablamos de un proyecto o colaboración?">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <Card>
-            <div className="flex items-center gap-3">
-              <Mail className="h-5 w-5 text-accent" />
-              <div>
-                <h4 className="font-semibold">Email</h4>
-                <p className="text-sm text-textSecondary">Respuesta rápida y profesional</p>
-              </div>
-            </div>
-            <a
-              href="mailto:adriangomezvaladesc01@gmail.com"
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-borderColor px-3 py-2 hover:bg-chip/20"
-            >
-              Enviar correo
-            </a>
-          </Card>
-
-          <Card>
-            <div className="flex items-center gap-3">
-              <Linkedin className="h-5 w-5 text-accent" />
-              <div>
-                <h4 className="font-semibold">LinkedIn</h4>
-                <p className="text-sm text-textSecondary">Conecta conmigo</p>
-              </div>
-            </div>
-            <a
-              href="https://www.linkedin.com/in/adri%C3%A1n-g%C3%B3mez-valad%C3%A9s-casta%C3%B1o-917784332/"
-              target="_blank" rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-borderColor px-3 py-2 hover:bg-chip/20"
-            >
-              Ir a LinkedIn
-            </a>
-          </Card>
-
-          <Card>
-            <div className="flex items-center gap-3">
-              <Github className="h-5 w-5 text-accent" />
-              <div>
-                <h4 className="font-semibold">GitHub</h4>
-                <p className="text-sm text-textSecondary">Repos y código</p>
-              </div>
-            </div>
-            <a
-              href="https://github.com/adrigomezv01"
-              target="_blank" rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-borderColor px-3 py-2 hover:bg-chip/20"
-            >
-              Ver GitHub
-            </a>
-          </Card>
-
-          <Card>
-            <div className="flex items-center gap-3">
-              <MessageCircle className="h-5 w-5 text-accent" />
-              <div>
-                <h4 className="font-semibold">WhatsApp</h4>
-                <p className="text-sm text-textSecondary">Escríbeme directamente</p>
-              </div>
-            </div>
-            <a
-              href="https://wa.me/34654079895?text=Hola%20Adri%C3%A1n%2C%20he%20visto%20tu%20portfolio%20y%20me%20gustar%C3%ADa%20contactar%20contigo."
-              target="_blank" rel="noreferrer"
-              className="mt-4 inline-flex items-center gap-2 rounded-md border border-borderColor px-3 py-2 hover:bg-chip/20"
-            >
-              Abrir chat
-            </a>
-          </Card>
-        </div>
-      </Section>
-
-      {/* Footer con firma animada */}
-      <footer className="border-t border-borderColor bg-bgHeader py-8 text-center">
-        <p className="text-textSecondary mb-1">
-          © {now} Adrián GVC — Ciberseguridad & IT Systems
-        </p>
-        <motion.p
-          initial={{ opacity: 0.6 }} animate={{ opacity: [0.6, 1, 0.85, 1] }}
-          transition={{ duration: 2.2, repeat: Infinity }}
-          className="font-mono text-accent"
+      {/* PROYECTOS */}
+      <section id="projects" className="py-32 max-w-6xl mx-auto px-6 text-center">
+        <motion.h2
+          className="text-4xl font-bold mb-12 text-white"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
         >
-          Diseñado y desarrollado por Adrián GVC
-        </motion.p>
+          Proyectos
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 gap-10">
+          {[
+            {
+              icon: <FolderGit2 className="h-10 w-10 text-emerald-400" />,
+              title: "VolatixLab",
+              desc: "Repositorio forense con escenarios RAM y disco en español para prácticas con Volatility y Autopsy.",
+              link: "https://github.com/adrigomezv01/VolatixLab",
+            },
+            {
+              icon: <ExternalLink className="h-10 w-10 text-emerald-400" />,
+              title: "Workflow personalizado SailPoint",
+              desc: "Workflow que genera contraseñas y envía credenciales automáticas por correo mediante IdentityIQ.",
+              link: "https://github.com/adrigomezv01",
+            },
+          ].map((p, i) => (
+            <motion.div
+              key={i}
+              className="p-8 rounded-2xl bg-slate-800/40 border border-slate-700 hover:border-emerald-400/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.2 }}
+            >
+              <div className="flex justify-center mb-4">{p.icon}</div>
+              <h3 className="text-xl font-semibold mb-2">{p.title}</h3>
+              <p className="text-gray-400 mb-4">{p.desc}</p>
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 font-medium"
+              >
+                Ver proyecto →
+              </a>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* CONTACTO */}
+      <section id="contact" className="relative py-28 bg-gradient-to-b from-slate-950 via-slate-900 to-black text-gray-100">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <motion.h2
+            className="text-4xl font-bold mb-4 text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            Contacto
+          </motion.h2>
+          <motion.p
+            className="text-gray-400 mb-12 text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            ¿Buscas un <span className="text-emerald-400 font-medium">consultor en ciberseguridad</span> 
+            o colaboración técnica? Escríbeme y te responderé personalmente.
+          </motion.p>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-10">
+            <motion.form
+              className="w-full md:w-1/2 bg-slate-900/40 border border-slate-800 rounded-2xl p-8 shadow-xl"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              onSubmit={(e) => e.preventDefault()}
+            >
+              <input type="text" placeholder="Nombre" className="w-full mb-4 px-4 py-3 rounded-lg bg-slate-800 text-white border border-slate-700 focus:border-emerald-400 outline-none" />
+              <input type="email" placeholder="Correo electrónico" className="w-full mb-4 px-4 py-3 rounded-lg bg-slate-800 text-white border border-slate-700 focus:border-emerald-400 outline-none" />
+              <textarea placeholder="Tu mensaje..." className="w-full mb-6 px-4 py-3 rounded-lg bg-slate-800 text-white border border-slate-700 focus:border-emerald-400 outline-none resize-none" rows="4"></textarea>
+              <button className="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-semibold py-3 rounded-lg transition">Enviar mensaje</button>
+            </motion.form>
+
+            <motion.div
+              className="flex flex-col md:w-1/3 text-left"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <p className="text-lg mb-6 text-gray-300">También puedes contactarme directamente:</p>
+              <a href="mailto:adriangomezvaladesc01@gmail.com" className="flex items-center gap-3 text-emerald-400 hover:text-emerald-300 mb-3 transition">
+                <i className="fa-solid fa-envelope text-xl"></i> adriangomezvaladesc01@gmail.com
+              </a>
+              <p className="flex items-center gap-3 text-gray-400 mb-3">
+                <i className="fa-solid fa-phone text-emerald-400 text-xl"></i> +34 654 07 98 95
+              </p>
+              <div className="flex gap-6 mt-6">
+                <a href="https://github.com/adrigomezv01" target="_blank" className="text-gray-400 hover:text-emerald-400 text-2xl"><i className="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/adriangomezvalades" target="_blank" className="text-gray-400 hover:text-emerald-400 text-2xl"><i className="fa-brands fa-linkedin"></i></a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-black border-t border-slate-800 py-8 text-center text-gray-500 text-sm">
+        © {new Date().getFullYear()} Adrián Gómez-Valadés Castaño —{" "}
+        <span className="text-gray-300">Consultor en Ciberseguridad, Sistemas IT y DFIR</span>.<br />
+        Desarrollado con <span className="text-emerald-400 font-semibold">React</span> &{" "}
+        <span className="text-emerald-400 font-semibold">TailwindCSS</span>.
       </footer>
     </div>
   );
