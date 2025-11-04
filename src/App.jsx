@@ -1,22 +1,73 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Shield, Terminal, Cpu, FolderGit2, ArrowRight, ExternalLink } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Shield,
+  Terminal,
+  Cpu,
+  FolderGit2,
+  ArrowRight,
+  ExternalLink,
+  CheckCircle2,
+  XCircle,
+} from "lucide-react";
 
 function App() {
+  // Estado del formulario
+  const [status, setStatus] = useState({ sent: false, error: false });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/xldoykww", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        setStatus({ sent: true, error: false });
+        form.reset();
+
+        // Oculta el mensaje tras 5 segundos
+        setTimeout(() => setStatus({ sent: false, error: false }), 5000);
+      } else {
+        throw new Error("Error al enviar");
+      }
+    } catch {
+      setStatus({ sent: false, error: true });
+      setTimeout(() => setStatus({ sent: false, error: false }), 5000);
+    }
+  };
+
   return (
     <div className="bg-[#0a0f1a] text-white min-h-screen">
-      {/* --- NAVBAR --- */}
+      {/* NAVBAR */}
       <header className="border-b border-emerald-500/20 sticky top-0 backdrop-blur-lg z-50">
         <nav className="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
-          <a href="#" className="text-2xl font-bold text-emerald-400">Adrián GVC</a>
+          <a href="#" className="text-2xl font-bold text-emerald-400">
+            Adrián GVC
+          </a>
           <div className="flex gap-6 text-sm">
-            <a href="#about" className="hover:text-emerald-400 transition">Sobre mí</a>
-            <a href="#projects" className="hover:text-emerald-400 transition">Proyectos</a>
-            <a href="#contact" className="hover:text-emerald-400 transition">Contáctame</a>
+            <a href="#about" className="hover:text-emerald-400 transition">
+              Sobre mí
+            </a>
+            <a href="#projects" className="hover:text-emerald-400 transition">
+              Proyectos
+            </a>
+            <a href="#contact" className="hover:text-emerald-400 transition">
+              Contáctame
+            </a>
           </div>
         </nav>
       </header>
 
-      {/* --- HERO --- */}
+      {/* HERO */}
       <section className="max-w-6xl mx-auto flex flex-col items-center justify-center text-center py-28 px-6">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
@@ -59,14 +110,16 @@ function App() {
         </motion.div>
       </section>
 
-      {/* --- ABOUT --- */}
+      {/* ABOUT */}
       <section id="about" className="max-w-5xl mx-auto py-24 px-6">
         <h2 className="text-3xl font-bold mb-6 text-emerald-400">Sobre mí</h2>
         <p className="text-zinc-300 leading-relaxed">
-          Soy técnico en **Administración de Sistemas Informáticos en Red (ASIR)**, 
-          **Sistemas Microinformáticos y Redes (SMR)** y especializado en **Ciberseguridad Informática (CETI Badajoz)**.  
-          Actualmente, desarrollo mi carrera en el ámbito de la **seguridad ofensiva y defensiva**, 
-          con interés especial en el **análisis forense digital (DFIR)** y la respuesta ante incidentes.
+          Soy técnico en <b>Administración de Sistemas Informáticos en Red (ASIR)</b>,{" "}
+          <b>Sistemas Microinformáticos y Redes (SMR)</b> y especializado en{" "}
+          <b>Ciberseguridad Informática (CETI Badajoz)</b>.  
+          Actualmente desarrollo mi carrera en el ámbito de la{" "}
+          <b>seguridad ofensiva y defensiva</b>, con especial interés en el{" "}
+          <b>análisis forense digital (DFIR)</b> y la respuesta ante incidentes.
         </p>
 
         <div className="mt-10 flex flex-wrap gap-6 text-zinc-400">
@@ -82,7 +135,7 @@ function App() {
         </div>
       </section>
 
-      {/* --- PROJECTS --- */}
+      {/* PROJECTS */}
       <section id="projects" className="max-w-6xl mx-auto py-24 px-6 bg-[#0d1421]">
         <h2 className="text-3xl font-bold mb-8 text-emerald-400">Proyectos destacados</h2>
 
@@ -113,7 +166,9 @@ function App() {
             className="rounded-xl border border-emerald-400/20 p-6 bg-[#101829]"
           >
             <FolderGit2 className="w-10 h-10 text-emerald-400 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Workflow automatizado en SailPoint</h3>
+            <h3 className="text-xl font-semibold mb-2">
+              Workflow automatizado en SailPoint
+            </h3>
             <p className="text-zinc-400 mb-4">
               Creación de un flujo de trabajo personalizado en IdentityIQ que genera contraseñas automáticas y notifica a los nuevos usuarios por correo.
             </p>
@@ -127,7 +182,7 @@ function App() {
         </div>
       </section>
 
-      {/* --- CONTACT --- */}
+      {/* CONTACT */}
       <section id="contact" className="py-24 bg-[#0a0f1a]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-emerald-400 mb-4">Contáctame</h2>
@@ -135,11 +190,7 @@ function App() {
             Si quieres hablar sobre ciberseguridad, proyectos o colaboraciones, rellena el formulario y te responderé lo antes posible.
           </p>
 
-          <form
-            action="https://formspree.io/f/xldoykww"
-            method="POST"
-            className="space-y-6 max-w-2xl mx-auto"
-          >
+          <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto">
             <div className="grid md:grid-cols-2 gap-6">
               <input
                 type="text"
@@ -173,10 +224,22 @@ function App() {
               <ArrowRight className="w-5 h-5" />
             </button>
           </form>
+
+          {/* Mensaje de éxito o error */}
+          {status.sent && (
+            <div className="mt-6 flex justify-center items-center gap-2 text-emerald-400 font-medium">
+              <CheckCircle2 className="w-5 h-5" /> ¡Mensaje enviado correctamente!
+            </div>
+          )}
+          {status.error && (
+            <div className="mt-6 flex justify-center items-center gap-2 text-red-400 font-medium">
+              <XCircle className="w-5 h-5" /> Error al enviar el mensaje. Inténtalo de nuevo.
+            </div>
+          )}
         </div>
       </section>
 
-      {/* --- FOOTER --- */}
+      {/* FOOTER */}
       <footer className="border-t border-emerald-400/10 py-10 text-center text-zinc-500 text-sm">
         <div className="flex justify-center gap-6 mb-4">
           <a href="https://github.com/adrigomezv01" target="_blank" rel="noopener noreferrer">
@@ -190,7 +253,10 @@ function App() {
           </a>
         </div>
 
-        <p>© {new Date().getFullYear()} Adrián Gómez-Valadés Castaño — Todos los derechos reservados.</p>
+        <p>
+          © {new Date().getFullYear()} Adrián Gómez-Valadés Castaño — Todos los derechos
+          reservados.
+        </p>
       </footer>
     </div>
   );
