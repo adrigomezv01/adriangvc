@@ -135,6 +135,7 @@ function App() {
         <h2 className="text-3xl font-bold mb-8 text-emerald-400">Proyectos destacados</h2>
 
         <div className="grid sm:grid-cols-2 gap-8">
+          {/* Proyecto 1 */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             className="rounded-xl border border-emerald-400/20 p-5 sm:p-6 bg-[#101829]"
@@ -155,23 +156,28 @@ function App() {
             </a>
           </motion.div>
 
+          {/* Proyecto 2 - Nuevo */}
           <motion.div
             whileHover={{ scale: 1.02 }}
             className="rounded-xl border border-emerald-400/20 p-5 sm:p-6 bg-[#101829]"
           >
             <FolderGit2 className="w-10 h-10 text-emerald-400 mb-3" />
             <h3 className="text-lg sm:text-xl font-semibold mb-2">
-              Workflow automatizado en SailPoint
+              Advanced Network Scanner
             </h3>
             <p className="text-zinc-400 mb-4 text-sm sm:text-base">
-              Creación de un flujo de trabajo personalizado en IdentityIQ que genera
-              contraseñas automáticas y notifica a los nuevos usuarios por correo.
+              Escáner avanzado de red y puertos desarrollado en Python con interfaz moderna
+              basada en CustomTkinter. Permite realizar análisis rápidos o completos de
+              hosts y servicios usando Nmap, mostrando resultados en tiempo real con un
+              diseño visual atractivo y funcional.
             </p>
             <a
-              href="mailto:adriangomezvaladesc01@gmail.com?subject=Info%20sobre%20Workflow%20SailPoint"
+              href="https://github.com/adrigomezv01/advanced-network-scanner"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 text-sm sm:text-base"
             >
-              Solicitar detalles <ExternalLink className="w-4 h-4" />
+              Ver en GitHub <ExternalLink className="w-4 h-4" />
             </a>
           </motion.div>
         </div>
