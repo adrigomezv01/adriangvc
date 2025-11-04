@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>Adrián GVC | Consultor en Ciberseguridad y Sistemas IT</title>
+    <meta
+      name="description"
+      content="Portfolio profesional de Adrián GVC — Consultor en Ciberseguridad, Sistemas IT y Análisis Forense (DFIR). Proyectos, habilidades, formación y contacto."
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Adrián GVC | Consultor en Ciberseguridad y Sistemas IT" />
+    <meta property="og:description" content="DFIR, IAM (SailPoint), Sistemas y Redes. Portfolio profesional." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/preview.png" />
+    <meta property="og:url" content="https://adriangvc.com" />
+
+    <!-- Favicon (coloca el archivo en /public/favicon.ico) -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <!-- Fuente IBM Plex Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Dark mode por defecto SIN parpadeos -->
+    <script>
+      try {
+        const saved = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const useDark = saved ? saved === "dark" : true || prefersDark;
+        document.documentElement.classList.toggle("dark", useDark);
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

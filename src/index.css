@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Suavizado + scroll */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+* { font-family: "IBM Plex Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+
+/* Paleta “Tech Corporate” (modo claro/oscuro) */
+:root {
+  --bgPrimary: #f8fafc;        /* slate-50 */
+  --bgHeader: #ffffff;
+  --textPrimary: #0f172a;      /* slate-900 */
+  --textSecondary: #475569;    /* slate-600 */
+  --borderColor: #e5e7eb;      /* gray-200 */
+  --cardBg: #ffffff;
+  --chip: #f3f4f6;             /* gray-100 */
+  --accent: #00e18e;           /* verde ciberseguridad */
+  --accent-2: #2563eb;         /* azul corporativo */
+  --banner: #e0fdf3;
+  --bannerText: #0a2e23;
+  --shadowElevate: 0 12px 30px rgba(2, 6, 23, 0.08);
+}
+
+.dark {
+  --bgPrimary: #0f172a;        /* slate-900 */
+  --bgHeader: #0b1220;         /* navy */
+  --textPrimary: #e2e8f0;      /* slate-200 */
+  --textSecondary: #94a3b8;    /* slate-400 */
+  --borderColor: #1f2937;      /* slate-800 */
+  --cardBg: #0b1323;
+  --chip: #0e1a32;
+  --accent: #00e18e;
+  --accent-2: #60a5fa;
+  --banner: #05271c;
+  --bannerText: #99f6e4;
+  --shadowElevate: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Utilidades mapeadas */
+.bg-bgPrimary { background: var(--bgPrimary); }
+.bg-bgHeader  { background: var(--bgHeader); }
+.bg-cardBg    { background: var(--cardBg); }
+.bg-chip      { background: var(--chip); }
+.text-textPrimary   { color: var(--textPrimary); }
+.text-textSecondary { color: var(--textSecondary); }
+.border-borderColor { border-color: var(--borderColor); }
+.shadow-elevate     { box-shadow: var(--shadowElevate); }
+.text-accent        { color: var(--accent); }
+.text-accent2       { color: var(--accent-2); }
+.bg-accent          { background-color: var(--accent); }
+.bg-banner          { background-color: var(--banner); }
+.text-banner        { color: var(--bannerText); }
+
+/* Fondo animado “red de datos” (sutil y corporativo) */
+.grid-net {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top, rgba(37, 99, 235, 0.06), rgba(0,0,0,0)) 0 0 / 100% 60% no-repeat,
+    linear-gradient(transparent 0, transparent 98%, rgba(96,165,250,.08) 98%, rgba(96,165,250,.08) 100%) 0 0/ 36px 36px,
+    linear-gradient(90deg, transparent 0, transparent 98%, rgba(96,165,250,.08) 98%, rgba(96,165,250,.08) 100%) 0 0/ 36px 36px;
+  animation: gridFloat 24s linear infinite;
+  opacity: .6;
+}
+@keyframes gridFloat {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 0, 0 36px, 36px 0; }
+}
