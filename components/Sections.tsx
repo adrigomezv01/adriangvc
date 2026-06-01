@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type MotionProps } from "framer-motion";
 import {
   skills,
   experience,
@@ -10,7 +10,7 @@ import {
   personalInfo,
 } from "@/lib/data";
 
-const fadeUp = {
+const fadeUp: MotionProps = {
   initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
@@ -99,7 +99,7 @@ export function Experience() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" } as MotionProps["transition"]}
                 className="group md:pl-8 relative"
               >
                 <div className="absolute left-[-4.5px] top-6 w-2.5 h-2.5 rounded-full bg-[#1E1E2E] border border-[#4F8EF760] hidden md:block group-hover:bg-[#4F8EF7] transition-colors duration-300" />
@@ -156,7 +156,7 @@ export function Projects() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: i * 0.12, ease: "easeOut" } as MotionProps["transition"]}
             className="group flex flex-col p-6 rounded-xl border border-[#1E1E2E] bg-[#16161F] hover:border-[#4F8EF740] transition-all duration-300 relative overflow-hidden"
           >
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#4F8EF740] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -218,7 +218,7 @@ export function Skills() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" } as MotionProps["transition"]}
               className="p-5 rounded-xl border border-[#4F8EF740] bg-[#4F8EF708] hover:border-[#4F8EF760] hover:bg-[#4F8EF710] transition-all duration-300"
             >
               <div className="flex items-center gap-2 mb-1">
@@ -243,7 +243,7 @@ export function Skills() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.16 + i * 0.08, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: 0.16 + i * 0.08, ease: "easeOut" } as MotionProps["transition"]}
               className="p-5 rounded-xl border border-[#1E1E2E] bg-[#16161F] hover:border-[#4F8EF730] transition-all duration-300"
             >
               <h3 className="text-sm font-semibold text-[#8888A0] mb-4">{group.category}</h3>
@@ -292,7 +292,7 @@ export function Certifications() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+              transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" } as MotionProps["transition"]}
               className={`p-5 rounded-xl border transition-all duration-300 ${colors.card}`}
             >
               <div className="flex items-start justify-between gap-3">
@@ -328,7 +328,7 @@ export function Certifications() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: i * 0.08, ease: "easeOut" } as MotionProps["transition"]}
             className="group flex flex-wrap items-start justify-between gap-4 py-5 border-b border-[#1E1E2E] last:border-0 hover:bg-[#16161F] -mx-4 px-4 rounded-lg transition-colors duration-200"
           >
             <div className="flex items-start gap-4">
@@ -373,7 +373,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2 } as MotionProps["transition"]}
               className="pt-2"
             >
               <a
@@ -415,7 +415,7 @@ export function Contact() {
                 initial={{ opacity: 0, x: 16 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" } as MotionProps["transition"]}
                 className="flex items-center justify-between p-4 rounded-xl border border-[#1E1E2E] bg-[#16161F] hover:border-[#4F8EF740] hover:bg-[#1a1a27] transition-all duration-300 group"
               >
                 <span className="text-xs font-mono text-[#444458] uppercase tracking-wide">{item.label}</span>
