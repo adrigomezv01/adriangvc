@@ -45,7 +45,7 @@ function TypewriterRole() {
 const f = (d = 0) => ({
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay: d, ease: [0.22, 1, 0.36, 1] as const },
+  transition: { duration: 0.5, delay: d, ease: "easeOut" as const },
 });
 
 export default function Hero() {
@@ -57,8 +57,6 @@ export default function Hero() {
       {/* Background glows */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_60%_40%,#5B8DEF18,transparent)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_40%_40%_at_20%_60%,#7C6FF710,transparent)]" />
-
-      {/* Bottom divider gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#080810] to-transparent" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-28 pb-24 w-full">
@@ -66,11 +64,11 @@ export default function Hero() {
 
           {/* LEFT */}
           <div>
-            {/* Mobile photo — visible only below lg */}
+            {/* Mobile photo */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
               className="lg:hidden flex justify-center mb-10"
             >
               <div className="relative w-32 h-32 rounded-2xl overflow-hidden border border-[#5B8DEF20] shadow-xl">
@@ -88,7 +86,7 @@ export default function Hero() {
 
             {/* Available badge */}
             <motion.div {...f(0.1)} className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-[#22c55e20] bg-[#22c55e08] mb-10">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#22c55e]" />
               <span className="text-xs text-[#22c55e] font-medium tracking-wide">
                 {"Available for immediate hire"}
               </span>
@@ -101,12 +99,12 @@ export default function Hero() {
             </motion.h1>
 
             {/* Role typewriter */}
-            <motion.div {...f(0.22)} className="text-xl sm:text-2xl font-light text-[#9090A8] mb-7 h-8">
+            <motion.div {...f(0.2)} className="text-xl sm:text-2xl font-light text-[#9090A8] mb-7 h-8">
               {mounted && <TypewriterRole />}
             </motion.div>
 
             {/* Divider */}
-            <motion.div {...f(0.26)} className="flex items-center gap-4 mb-8">
+            <motion.div {...f(0.25)} className="flex items-center gap-4 mb-8">
               <div className="h-px w-8 bg-[#5B8DEF]" />
               <span className="text-xs text-[#44445A] font-mono uppercase tracking-[0.2em]">
                 {"IAM · DFIR · Azure Security"}
@@ -124,33 +122,16 @@ export default function Hero() {
 
             {/* CTAs */}
             <motion.div {...f(0.35)} className="flex flex-wrap gap-3 mb-12">
-              <a
-                href="#contact"
-                className="px-6 py-3 rounded-xl bg-[#5B8DEF] text-white text-sm font-semibold hover:bg-[#4a7de0] active:scale-[0.98] transition-all duration-200 shadow-[0_0_32px_#5B8DEF35]"
-              >
+              <a href="#contact" className="px-6 py-3 rounded-xl bg-[#5B8DEF] text-white text-sm font-semibold hover:bg-[#4a7de0] active:scale-[0.98] transition-all duration-200 shadow-[0_0_32px_#5B8DEF35]">
                 {"Get in touch"}
               </a>
-              <a
-                href="/cv-adrian-gomez-valades.pdf"
-                download
-                className="px-6 py-3 rounded-xl border border-[#5B8DEF35] text-[#5B8DEF] text-sm font-semibold hover:bg-[#5B8DEF0D] active:scale-[0.98] transition-all duration-200"
-              >
+              <a href="/cv-adrian-gomez-valades.pdf" download className="px-6 py-3 rounded-xl border border-[#5B8DEF35] text-[#5B8DEF] text-sm font-semibold hover:bg-[#5B8DEF0D] active:scale-[0.98] transition-all duration-200">
                 {"Download CV"}
               </a>
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl border border-[#1A1A2E] text-[#9090A8] text-sm font-medium hover:border-[#5B8DEF30] hover:text-[#EEEEF5] transition-all duration-200"
-              >
+              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl border border-[#1A1A2E] text-[#9090A8] text-sm font-medium hover:border-[#5B8DEF30] hover:text-[#EEEEF5] transition-all duration-200">
                 {"LinkedIn"}
               </a>
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl border border-[#1A1A2E] text-[#9090A8] text-sm font-medium hover:border-[#5B8DEF30] hover:text-[#EEEEF5] transition-all duration-200"
-              >
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="px-6 py-3 rounded-xl border border-[#1A1A2E] text-[#9090A8] text-sm font-medium hover:border-[#5B8DEF30] hover:text-[#EEEEF5] transition-all duration-200">
                 {"GitHub"}
               </a>
             </motion.div>
@@ -170,18 +151,15 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT — Photo desktop */}
+          {/* RIGHT — Photo desktop only */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
             className="hidden lg:block"
           >
             <div className="relative">
-              {/* Glow behind photo */}
               <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[#5B8DEF30] to-[#7C6FF720] blur-3xl" />
-
-              {/* Photo card */}
               <div className="relative rounded-2xl overflow-hidden border border-[#5B8DEF20] shadow-2xl">
                 <div className="relative w-full" style={{ paddingBottom: "115%" }}>
                   <Image
@@ -200,44 +178,30 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Badge top-left */}
-              <motion.div
-                animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-6 top-10 px-3.5 py-2.5 rounded-xl border border-[#5B8DEF25] bg-[#080810]/90 backdrop-blur-md shadow-xl"
-              >
+              {/* Badges — static, no infinite animation */}
+              <div className="absolute -left-6 top-10 px-3.5 py-2.5 rounded-xl border border-[#5B8DEF25] bg-[#080810]/90 backdrop-blur-md shadow-xl">
                 <p className="text-xs font-mono font-semibold text-[#5B8DEF]">{"SailPoint IIQ"}</p>
                 <p className="text-[10px] text-[#44445A] mt-0.5">{"Real experience"}</p>
-              </motion.div>
-
-              {/* Badge bottom-right */}
-              <motion.div
-                animate={{ y: [3, -3, 3] }}
-                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -right-6 bottom-24 px-3.5 py-2.5 rounded-xl border border-[#22c55e20] bg-[#080810]/90 backdrop-blur-md shadow-xl"
-              >
+              </div>
+              <div className="absolute -right-6 bottom-24 px-3.5 py-2.5 rounded-xl border border-[#22c55e20] bg-[#080810]/90 backdrop-blur-md shadow-xl">
                 <p className="text-xs font-mono font-semibold text-[#22c55e]">{"SC-900 / AZ-900"}</p>
                 <p className="text-[10px] text-[#44445A] mt-0.5">{"Microsoft certified"}</p>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
 
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — static */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-[10px] font-mono text-[#44445A] tracking-widest uppercase">{"scroll"}</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          className="w-px h-8 bg-gradient-to-b from-[#5B8DEF60] to-transparent"
-        />
+        <div className="w-px h-8 bg-gradient-to-b from-[#5B8DEF60] to-transparent" />
       </motion.div>
     </section>
   );
